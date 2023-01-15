@@ -150,9 +150,8 @@ def test_one_input(input_bytes):
     choice = struct.unpack('>B', input_bytes[:1])[0]
     if choice >= len(TESTS):
         return
+    
     fdp = atheris.FuzzedDataProvider(input_bytes[1:])
-    #inp = fdp.ConsumeUnicode(sys.maxsize)
-
     TESTS[choice][0](inp_of_type(fdp, TESTS[choice][1]))
 
 def main():
